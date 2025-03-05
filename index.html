@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Card</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+    <video autoplay loop muted playsinline class="back-vid">
+        <source src="Background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="profile-card">
+        <div class="info-box">
+            <img src="image.jpg" alt="Profile Image" data-aos="zoom-in" data-aos-duration="1000">
+            <div class="info" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                <h2 data-aos="zoom-in" data-aos-duration="1000">Baro<span style="color: #4acfee;">OvO</span></h2>
+                <p>Student</p>
+            </div>
+            <div class="socials" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                <a href="https://www.instagram.com/3ro_xox/" target="_blank"><i class='bx bxl-instagram-alt'></i></a>
+                <a href="https://www.facebook.com/profile.php?id=100085364821591&locale=vi_VN" target="_blank"><i class='bx bxl-facebook-circle'></i></a>
+                <a href="https://www.youtube.com/@Baro-xOx" target="_blank"><i class='bx bxl-youtube'></i></a>
+                <a href="https://www.tiktok.com/@baroxox" target="_blank"><i class='bx bxl-tiktok'></i></a>
+            </div>
+        </div>
+        <div class="number-grid" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
+            <div class="box"><p>2</p><p>Posts</p></div>
+            <div class="box"><p>999k</p><p>Follower</p></div>
+            <div class="box"><p>1</p><p>Following</p></div>
+        </div>
+        <div class="btn-box" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="800">
+            <button class="follow">Follow</button>
+            <button class="message" onclick="showModal()">Message</button>
+        </div>
+    </div>
+
+    <div class="modal" id="messageModal">
+        <div class="modal-content">
+            <span class="close" onclick="hideModal()">×</span>
+            <h2>Send a Message</h2>
+            <form id="messageForm">
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="content">Message:</label>
+                <textarea id="content" name="content" rows="5" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+        function showModal() {
+            document.getElementById("messageModal").style.display = "block";
+        }
+
+        function hideModal() {
+            document.getElementById("messageModal").style.display = "none";
+        }
+
+        (function() {
+            emailjs.init("vkjbaSwQ1D3TZJls-");
+        })();
+
+        document.getElementById("messageForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const email = document.getElementById("email").value;
+            const content = document.getElementById("content").value;
+
+            emailjs.send("service_vlwscto", "template_98afijd", {
+                from_email: email,
+                message: content,
+                to_email: "hohoangthienbao@gmail.com"
+            }).then(
+                function() {
+                    alert("Message sent successfully!");
+                    hideModal();
+                },
+                function(error) {
+                    alert("Failed to send message: " + error.text);
+                }
+            );
+        });
+    </script>
+</body>
+</html>

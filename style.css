@@ -1,0 +1,303 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.back-vid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+@media (max-aspect-ratio: 16/9) {
+    .back-vid { width: auto; height: 100%; }
+}
+
+@media (min-aspect-ratio: 16/9) {
+    .back-vid { width: 100%; height: auto; }
+}
+
+.profile-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5em;
+    padding: 2em 2.5em;
+    border-radius: 2em;
+    background-color: rgba(207, 207, 207, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: white;
+    position: relative;
+}
+
+.profile-card img {
+    width: 150px;
+    border-radius: 50%;
+    border: 3px solid rgb(0, 235, 234);
+    box-shadow: 0 0 25px rgb(0, 235, 234);
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.profile-card img:hover {
+    box-shadow: 0 0 25px rgb(0, 235, 234), 0 0 50px rgb(0, 235, 234), 0 0 100px rgb(0, 235, 234);
+}
+
+.profile-card .number-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2em;
+}
+
+.profile-card .btn-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 1em;
+}
+
+.btn-box button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 1em;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.4s ease-in-out;
+}
+
+.btn-box .follow {
+    background-color: rgb(0, 235, 234);
+    box-shadow: 0 0 25px rgb(0, 235, 234);
+    color: black;
+}
+
+.btn-box .follow:hover {
+    background-color: transparent;
+    border: 2px solid rgb(0, 235, 234);
+    color: rgb(0, 235, 234);
+    box-shadow: 0 0 25px rgb(0, 235, 234), inset 0 0 10px rgb(0, 235, 234);
+}
+
+.btn-box .message {
+    background-color: transparent;
+    border: 2px solid rgb(0, 235, 234);
+    color: rgb(0, 235, 234);
+    box-shadow: 0 0 25px rgb(0, 235, 234), inset 0 0 10px rgb(0, 235, 234);
+}
+
+.btn-box .message:hover {
+    background-color: rgb(0, 235, 234);
+    color: black;
+    box-shadow: 0 0 25px rgb(0, 235, 234), inset 0 0 10px rgb(0, 235, 234);
+}
+
+.number-grid .box p:first-child { font-weight: 800; }
+.number-grid .box p:last-child { font-weight: 500; opacity: 0.8; }
+
+.info-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    margin-top: 1.5em;
+}
+
+.info p { color: rgb(0, 235, 234); }
+
+.socials { margin: 20px 0; }
+
+.socials a { text-decoration: none; display: inline-block; }
+
+.socials a i {
+    font-size: 1.5em;
+    color: rgb(0, 235, 234);
+    border: 2px solid rgb(0, 235, 234);
+    border-radius: 50%;
+    padding: 10px;
+    margin-left: 5px;
+    cursor: pointer;
+    transition: 0.4s ease-in-out;
+}
+
+.socials a:hover i {
+    background-color: rgb(0, 235, 234);
+    color: black;
+    box-shadow: 0 0 25px rgb(0, 235, 234);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    background-color: rgba(207, 207, 207, 0.2);
+    backdrop-filter: blur(10px);
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 1em;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    width: 80%;
+    max-width: 500px;
+    color: white;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: rgb(0, 235, 234);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover { color: rgb(0, 180, 180); }
+
+.modal-content h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: rgb(0, 235, 234);
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-content label {
+    font-weight: 500;
+    color: rgb(0, 235, 234);
+}
+
+.modal-content input,
+.modal-content textarea {
+    padding: 10px;
+    border: 2px solid rgb(0, 235, 234);
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 16px;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgb(0, 235, 234);
+}
+
+.modal-content button {
+    padding: 10px;
+    background-color: rgb(0, 235, 234);
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.modal-content button:hover {
+    background-color: transparent;
+    color: rgb(0, 235, 234);
+    border: 2px solid rgb(0, 235, 234);
+    box-shadow: 0 0 10px rgb(0, 235, 234);
+}
+@media (max-width: 768px) {
+    .profile-card {
+        padding: 1.5em;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .profile-card img {
+        width: 120px;
+    }
+
+    .number-grid {
+        grid-template-columns: 1fr;
+        gap: 1em;
+    }
+
+    .btn-box {
+        flex-direction: column;
+        gap: 0.5em;
+    }
+
+    .btn-box button {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .socials a i {
+        font-size: 1.2em;
+        padding: 8px;
+    }
+
+    .modal-content {
+        width: 90%;
+        margin: 10% auto;
+    }
+}
+@media (max-width: 480px) {
+    .profile-card {
+        padding: 1em;
+    }
+
+    .profile-card img {
+        width: 100px;
+    }
+
+    .info h2 {
+        font-size: 1.5em;
+    }
+
+    .info p {
+        font-size: 0.9em;
+    }
+
+    .number-grid .box p:first-child {
+        font-size: 1.2em;
+    }
+
+    .number-grid .box p:last-child {
+        font-size: 0.8em;
+    }
+
+    .btn-box button {
+        font-size: 14px;
+    }
+}
